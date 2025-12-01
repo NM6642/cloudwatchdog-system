@@ -1,7 +1,7 @@
 # CloudWatchdog 
 
 ## Project Overview
-This project demonstrates an **auto-remediation setup for microservices. The system monitors log file sizes of a microservice, triggers alerts if the file grows beyond a threshold, sends emails via Alertmanager, and automatically resets the log file through a webhook to prevent crashes.
+This project demonstrates an auto-remediation setup for microservices. The system monitors log file sizes of a microservice, triggers alerts if the file grows beyond a threshold, sends emails via Alertmanager, and automatically resets the log file through a webhook to prevent crashes.
 
 
 - **Goal:** Monitor microservice log file sizes, send alerts, and **auto-remediate** oversized log files to ensure stability.
@@ -123,4 +123,5 @@ ls -lh microservice/logs.txt
   - Webhook-triggered auto-remediation
 
 - Inspired by real-world Cloudflare and other SaaS outages, ensuring system reliability and uptime even under unexpected log growth.
+
 
