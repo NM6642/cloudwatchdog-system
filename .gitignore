@@ -1,0 +1,23 @@
+# Python virtual environments in all folders
+**/venv/
+
+# Python cache
+**/__pycache__/
+*.pyc
+
+# Logs
+**/logs.txt
+*.log
+
+# Sensitive configs
+alertmanager/alertmanager.yml
+auto_remediation/*.env
+
+# Docker overrides / envs
+*.env
+docker-compose.override.yml
+
+# IDE / OS files
+.vscode/
+.idea/
+.DS_Store

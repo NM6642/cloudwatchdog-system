@@ -1,0 +1,11 @@
+groups:
+  - name: microservice_alerts
+    rules:
+      - alert: FileSizeTooLarge
+        expr: file_size_bytes > 50000
+        for: 10s
+        labels:
+          severity: warning
+        annotations:
+          summary: "File size exceeded 50KB"
+          description: "The microservice log file size is too large, may cause crash"
