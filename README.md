@@ -44,7 +44,11 @@ This project demonstrates an auto-remediation setup for microservices. The syste
 5. **Docker ensures persistence**:
    - `logs.txt` is mounted as a volume to persist changes.  
    - Each service runs in its container for isolation.
-
+     
+### Docker Setup
+All components are containerized using `docker-compose.yml`:
+- Ports: Microservice (4000), Prometheus (9090), Grafana (3000), Alertmanager (9093), Webhook (5001).
+- Shared volume: `logs.txt` is shared between microservice and webhook for remediation.
 ---
 
 ## Screenshots
@@ -91,13 +95,12 @@ Simulate a large log file:
 
 ```bash
 yes "DATA" | head -n 50000 >> microservice/logs.txt
-curl http://localhost:4000/metrics | grep file_size_bytes
+curl http://localhost:4000/metrics | grep file_size_bytes -Observe metrics via:
 ```
 
 ### 2. Trigger Webhook Manually (Test Auto-Remediation)
 
-Send a POST request to the webhook to simulate the alert:
-
+Send a POST request to the webhook to simulate the alert:Example POST command to test:
 ```bash
 curl -X POST http://localhost:5001 -H "Content-Type: application/json" -d '{"alertname":"FileSizeTooLarge"}'
 ```
@@ -118,10 +121,14 @@ ls -lh microservice/logs.txt
 - Log file growth can cause microservice crashes.  
 - Alerts without remediation may notify but leave services unstable.  
 - This project ensures automatic mitigation of high-risk conditions via:
-  - Prometheus monitoring
-  - Alertmanager notifications
-  - Webhook-triggered auto-remediation
+-   Prometheus monitoring
+-   Alertmanager notifications
+-   webhook-triggered auto-remediation
+-   Provide **automated remediation** to prevent crashes or downtime.
+-    Ensure **continuous observability** of microservices, even under high load or misbehavior.
+-    Reduce manual intervention during critical periods of outages or abnormal events.
+  
+   Inspired by real-world Cloudflare and other SaaS outages, ensuring system reliability and uptime even under unexpected log growth.
 
-- Inspired by real-world Cloudflare and other SaaS outages, ensuring system reliability and uptime even under unexpected log growth.
 
 
