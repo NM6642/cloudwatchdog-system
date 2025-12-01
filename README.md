@@ -1,7 +1,7 @@
 # CloudWatchdog 
 
 ## Project Overview
-This project demonstrates an **auto-remediation setup for microservices** using **Prometheus, Alertmanager, Grafana, Flask webhook, and Docker**. The system monitors log file sizes of a microservice, triggers alerts if the file grows beyond a threshold, sends emails via Alertmanager, and automatically resets the log file through a webhook to prevent crashes.
+This project demonstrates an **auto-remediation setup for microservices. The system monitors log file sizes of a microservice, triggers alerts if the file grows beyond a threshold, sends emails via Alertmanager, and automatically resets the log file through a webhook to prevent crashes.
 
 
 - **Goal:** Monitor microservice log file sizes, send alerts, and **auto-remediate** oversized log files to ensure stability.
@@ -51,7 +51,7 @@ This project demonstrates an **auto-remediation setup for microservices** using 
 
 ### 1. Microservice Metrics
 Shows the log file size metrics exposed by the microservice.
-![Microservice Metrics](After_increasing_the_log_file.png)
+![Microservice Metrics](After_increasing.png)
 
 ### 2. Prometheus Dashboard
 Prometheus view showing active metrics and configured alerts.
@@ -75,7 +75,7 @@ Overview of active alerts and microservice health metrics.
 
 ### 7. Docker Containers
 All running containers used in this project.
-![Docker Containers](docker_containers.png)
+![Docker Containers](docker.png)
 ## Commands to Run Locally
 
 **Start services with Docker Compose:**
@@ -102,7 +102,8 @@ Send a POST request to the webhook to simulate the alert:
 curl -X POST http://localhost:5001 -H "Content-Type: application/json" -d '{"alertname":"FileSizeTooLarge"}'
 ```
 ### 3. Verify Auto-Remediation
-
+Webhook successfully triggered to truncate the oversized log file.
+![Auto-Remediation Result](auto_remediation_result.png)
 ### Check logs.txt size
 ```bash
 ls -lh microservice/logs.txt
@@ -122,3 +123,4 @@ ls -lh microservice/logs.txt
   - Webhook-triggered auto-remediation
 
 - Inspired by real-world Cloudflare and other SaaS outages, ensuring system reliability and uptime even under unexpected log growth.
+
